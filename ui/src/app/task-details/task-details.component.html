@@ -1,0 +1,16 @@
+<h2>Task Details</h2>
+<div class="container border">
+  <div class="row ">
+    <div class="col-xs-12">
+      <div class="formGroup">
+<label>Task#</label>:<label>{{ui_taskId}}</label><br>
+<label>Task Name</label>:<label>{{ui_taskNme}}</label><br>
+<label>Description</label>:<label>{{ui_description}}</label><br>
+<label>Creation Time</label>:<label>{{ui_creationTime | date:'medium'}}</label><br>
+ 
+      </div>
+    </div>
+  </div>
+  <button class="button btn btn-primary " (click)="cancel($event)">Cancel</button>  
+<button class="button btn btn-primary " (click)="done($event)">Done</button> 
+</div>

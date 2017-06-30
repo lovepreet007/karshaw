@@ -1,0 +1,49 @@
+<div class="col-md-12 col-md-offset-1">
+    <h2>Deal Setup</h2>
+    <form [formGroup]="ngForm"
+        (ngSubmit)="onSubmit()">
+        <div class="form-group marginTop">
+            <label for="dealName">Deal Name</label>
+            <input type="text" formControlName="dealName" class="form-control" placeholder="Deal Name"  required/>
+            <span *ngIf="!ngForm.controls.dealName.valid && ngForm.controls.dealName.touched" class="help-block">enter valid deal name</span>
+        </div>
+
+        <div class="form-group">
+            <label for="clientName">Client Name</label>
+            <input type="text" class="form-control" formControlName="clientName" placeholder="Client Name" minlength="3" name="clientName"
+                required />
+                 <span *ngIf="!ngForm.controls.clientName.valid && ngForm.controls.clientName.touched" class="help-block">enter valid client name</span>
+        </div>
+
+        <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <input type="date" class="form-control" formControlName="dealDate" name="dueDate" required/>
+            <span *ngIf="!ngForm.controls.dealDate.valid && ngForm.controls.dealDate.touched" class="help-block">enter valid deal date</span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Priority</label>
+            <select class="form-control" formControlName="priority" [(ngModel)]="defaultPrioritie" >
+				<!--<option value="default">Select a priority</option>-->
+				<option *ngFor="let priority of priorities" [ngValue]="priority">{{priority}}</option>
+			</select>
+        </div>
+
+      <div  class="form-group" formArrayName="rTypes">
+          <label class="control-label">Review Types</label>
+          <div
+            [formGroupName]="i"
+            *ngFor="let rtype of ngForm.get('rTypes').controls;let i = index">
+            <label [for]="i">
+              <input [id]="i" type="checkbox" class="checkbox-inline"  formControlName="value" checked/>
+              <span formContralName="name">{{reviewTypes[i]}}</span>
+            </label>
+            <div *ngIf="!ngForm.get('rTypes').controls[i].valid" class="help-block">Please select at least one check box.</div>
+          </div>
+ </div>
+
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary"  [disabled]="!this.ngForm.valid">Submit</button>
+        </div>
+    </form>
+</div>

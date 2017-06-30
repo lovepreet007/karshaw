@@ -1,0 +1,1 @@
+export * from './dealsetup.component';

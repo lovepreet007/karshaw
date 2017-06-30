@@ -1,0 +1,61 @@
+<h2>Tape Cracking</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form [formGroup]="ngForm" (ngSubmit)="addLoans()">
+            <div formArrayName="loans">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Loan Id</th>
+                    <th>Borrower Name</th>
+                    <th>SSN</th>
+                    <th>Loan Type</th>
+                    <th>Loan Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr [formGroupName]="i" *ngFor="let loan of ngForm.get('loans').controls;let i=index">
+                      <td>
+                        <input type="hidden" class="form-control" formControlName="dealId"/>
+                        <input type="text" class="form-control" formControlName="loanId"/>
+                        <span *ngIf="!ngForm.get('loans').controls[i].controls.loanId.valid && ngForm.get('loans').controls[i].controls.loanId.touched" class="help-block">enter valid loan id</span>
+                        </td>
+                      <td>
+                        <input type="text" class="form-control" formControlName="borrowerName" />
+                        <span *ngIf="!ngForm.get('loans').controls[i].controls.borrowerName.valid && ngForm.get('loans').controls[i].controls.borrowerName.touched" class="help-block">enter valid borrower Name</span>
+                        </td>
+                      <td>
+                        <input type="text" class="form-control" formControlName="ssn" />
+                        <span *ngIf="!ngForm.get('loans').controls[i].controls.ssn.valid && ngForm.get('loans').controls[i].controls.ssn.touched" class="help-block">enter valid ssn</span>
+                        </td>
+                      <td>
+                        <input type="text" class="form-control" formControlName="loanType" />
+                        <span *ngIf="!ngForm.get('loans').controls[i].controls.loanType.valid && ngForm.get('loans').controls[i].controls.loanType.touched" class="help-block">enter valid loan type</span>
+                      </td>
+                      <td>
+                        <input type="number" class="form-control" formControlName="loanAmount" />
+                        <span *ngIf="!ngForm.get('loans').controls[i].controls.loanAmount.valid && ngForm.get('loans').controls[i].controls.loanAmount.touched" class="help-block">enter valid loan amount</span>
+                      </td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-xs-12 form-group">
+              <button type="button" class="btn btn-default pull-right" (click)="addRow()">
+                Add Row
+              </button>
+            </div>
+            <div class="col-xs-12 form-group">
+              <button type="submit" class="btn btn-primary addnew pull-right" 
+              [disabled]="!this.ngForm.valid || ngForm.get('loans').controls.length == 0">
+                  Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

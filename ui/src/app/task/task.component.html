@@ -1,0 +1,31 @@
+<div class="col-md-12 col-md-offset-1">
+<h1>{{pageTitle}}</h1>
+<div class="'panel panel-primary'">
+	<div #dataContainer></div>
+        <div class='table-responsive'>
+            <table class='table table-bordered '
+                   >
+                <thead>
+                    <tr>
+                    	<th>Deal ID</th>
+                        <th>Deal Name</th>
+                        <th>Loan ID</th>
+						 <th>Task Name</th>
+                        <th>Status</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf='taskDetails && taskDetails.length'>
+                    <tr *ngFor='let detail of taskDetails'>
+	                    <td> <a (click)="taskClick(detail)">CLYOO{{detail.dealId}} </a></td>
+				        <td>{{detail.dealName}}</td>
+				        <td>{{detail.loanId}}</td>
+				        <td>{{detail.taskName}}</td>
+				        <td>{{detail.status}}</td>
+				        <td>{{detail.timesStamp|  date:'medium'}}</td>  
+				                               
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
